@@ -12,10 +12,12 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.RowConstraints;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Pair;
+
 import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -28,6 +30,10 @@ public class Controller {
     private static Stage solution;
     private int solutionNumber;
 
+    @FXML
+    private HBox controlButtons;
+    @FXML
+    private Button showButton;
     @FXML
     private Button previousButton;
     @FXML
@@ -86,6 +92,10 @@ public class Controller {
         }
     }
 
+    public void setSizeButtonClicked() {
+        if (isSizeCorrect()) changeField();
+    }
+
     public void randomSizeButtonClicked() {
         model.changeSize();
         widthTextField.setText(String.valueOf(model.getWidth()));
@@ -102,31 +112,20 @@ public class Controller {
         }
     }
 
+    public void showButtonClicked() {
+        showSolution();
+        if (model.getSolutionsSize() == 0) noSolutions();
+    }
+
     public void nextButtonClicked() {
-        if (solutionGrid.getColumnCount() == 0 && solutionGrid.getRowCount() == 0) {
-            showSolution();
-            if (model.getSolutionsSize() == 0)  {
-                noSolutions();
-                return;
-            }
-        } else {
-            solutionNumber = solutionNumber == model.getSolutionsSize() ? 1 : solutionNumber + 1;
-            solutionsNumberLabel.setText(solutionNumber + " из " + model.getSolutionsSize());
-        }
+        solutionNumber = solutionNumber == model.getSolutionsSize() ? 1 : solutionNumber + 1;
+        solutionsNumberLabel.setText(solutionNumber + " из " + model.getSolutionsSize());
         updateField();
     }
 
     public void previousButtonClicked() {
-        if (solutionGrid.getColumnCount() == 0 && solutionGrid.getRowCount() == 0) {
-            showSolution();
-            if (model.getSolutionsSize() == 0)  {
-                noSolutions();
-                return;
-            }
-        } else {
-            solutionNumber = solutionNumber == 1 ? model.getSolutionsSize() : solutionNumber - 1;
-            solutionsNumberLabel.setText(solutionNumber + " из " + model.getSolutionsSize());
-        }
+        solutionNumber = solutionNumber == 1 ? model.getSolutionsSize() : solutionNumber - 1;
+        solutionsNumberLabel.setText(solutionNumber + " из " + model.getSolutionsSize());
         updateField();
     }
 
@@ -208,6 +207,14 @@ public class Controller {
 
         solutionsNumberLabel.setText("1 из " + model.getSolutionsSize());
         solutionNumber = 1;
+
+        previousButton.setVisible(true);
+        previousButton.getStyleClass().add("controlButton");
+        nextButton.setVisible(true);
+        nextButton.getStyleClass().add("controlButton");
+        controlButtons.getChildren().remove(showButton);
+
+        updateField();
     }
 
     private void noSolutions() {
@@ -218,7 +225,7 @@ public class Controller {
 
     private void updateField() {
         for (int i = 0; i < model.getHeight(); i++) {
-            for (int j = 0; j < model.getWidth(); j ++) {
+            for (int j = 0; j < model.getWidth(); j++) {
                 labels[i][j].getStyleClass().remove("solutionCell");
             }
         }

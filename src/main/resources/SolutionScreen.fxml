@@ -5,10 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox styleClass="borderPane" stylesheets="@styles.css"
-      xmlns="http://javafx.com/javafx/11.0.1"
-      xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="Controller.Controller">
+<VBox styleClass="borderPane" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Controller">
       <BorderPane prefHeight="500.0" prefWidth="400.0">
          <center>
             <VBox alignment="TOP_CENTER" BorderPane.alignment="TOP_CENTER">
@@ -16,7 +13,7 @@
                   <Insets bottom="200.0" top="30.0" />
                </BorderPane.margin>
                   <GridPane fx:id="solutionGrid" alignment="CENTER" />
-                  <Label fx:id="solutionsNumberLabel" text="Нажмите на любую кнопку" styleClass="textLabel">
+                  <Label fx:id="solutionsNumberLabel" styleClass="textLabel">
                      <VBox.margin>
                         <Insets top="20.0" />
                      </VBox.margin>
@@ -24,13 +21,12 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <HBox alignment="TOP_CENTER" spacing="20.0">
-                        <Button fx:id="previousButton" onAction="#previousButtonClicked" styleClass="controlButton"
-                                text="Предыдущее" />
-                        <Button fx:id="nextButton" onAction="#nextButtonClicked" styleClass="controlButton"
-                                text="Следующее" />
+                  <HBox fx:id="controlButtons" alignment="TOP_CENTER" spacing="20.0">
+                     <Button fx:id="previousButton" onAction="#previousButtonClicked" text="Предыдущее" visible="false" />
+                     <Button fx:id="showButton" onAction="#showButtonClicked" styleClass="showButton" text="Показать решения" />
+                     <Button fx:id="nextButton" onAction="#nextButtonClicked" text="Следующее" visible="false" />
                   </HBox>
-                  <Button onAction="#newGameButtonClicked" styleClass="startButton" text="Новая">
+                  <Button onAction="#newGameButtonClicked" styleClass="startButton" text="Вернуться">
                      <VBox.margin>
                         <Insets top="40.0" />
                      </VBox.margin>

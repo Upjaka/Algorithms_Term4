@@ -12,11 +12,15 @@ public class Model {
     private int height;
     private int[][] field = new int[0][0];
     List<List<Pair<Integer, Integer>>> solutions = new ArrayList<>();
+    private boolean isSolved = false;
 
     public void solve() {
-        List<Pair<Integer, Integer>> solution = new ArrayList<>();
-        solution.add(new Pair<>(0,0));
-        findSolution(0, 0, solution);
+        if (!isSolved) {
+            List<Pair<Integer, Integer>> solution = new ArrayList<>();
+            solution.add(new Pair<>(0, 0));
+            findSolution(0, 0, solution);
+            isSolved = true;
+        }
     }
 
     private void findSolution(int i, int j, List<Pair<Integer, Integer>> solution) {
@@ -49,6 +53,9 @@ public class Model {
     }
 
     private void updateField() {
+        for (List<Pair<Integer, Integer>> solution : solutions) {
+            solutions.remove(solution);
+        }
         int[][] newField = new int[height][width];
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
@@ -63,6 +70,9 @@ public class Model {
     }
 
     public void setRandomValues() {
+        for (List<Pair<Integer, Integer>> solution : solutions) {
+            solutions.remove(solution);
+        }
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
                 field[i][j] = getRandomValue(i, j);

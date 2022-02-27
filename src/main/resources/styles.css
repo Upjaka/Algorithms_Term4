@@ -93,6 +93,23 @@
     -fx-border-color: #6495ED;
     -fx-text-fill: white;
 }
+.showButton {
+    -fx-background-color: white;
+    -fx-border-color: gray;
+    -fx-border-radius: 45px;
+    -fx-pref-width: 200px;
+    -fx-pref-height: 31px;
+    -fx-font-size: 18px;
+    -fx-font-family: 'Montserrat', sans-serif;
+    -fx-font-weight: 600;
+    -fx-text-fill: #524f4e;
+}
+.showButton:hover {
+    -fx-background-radius: 45px;
+    -fx-background-color: #6495ED;
+    -fx-border-color: #6495ED;
+    -fx-text-fill: white;
+}
 .cell {
     -fx-background-color: white;
     -fx-border-color: silver;
