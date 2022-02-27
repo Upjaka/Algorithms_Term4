@@ -49,12 +49,16 @@ public class Controller {
     @FXML
     private TextField heightTextField;
 
-    // Обработчик нажатия кнопки выхода из приложения
+    /**
+     * Обработчик нажатия кнопки выхода из приложения
+     */
     public void exitButtonClicked() {
         Platform.exit();
     }
 
-    // Обработчик нажатия кнопки "Решить"
+    /**
+     * Обработчик нажатия кнопки "Решить"
+     */
     public void startButtonClicked() throws IOException {
         if (isSizeCorrect()) {
             Pattern pattern = Pattern.compile("[^0-9]");
@@ -84,19 +88,25 @@ public class Controller {
         }
     }
 
-    // Обработчик нажатия кнопки возвращения с экрана с решений к экрану задания ввходных параметров
+    /**
+     * Обработчик нажатия кнопки возвращения с экрана с решений к экрану задания ввходных параметров
+     */
     public void newGameButtonClicked() {
         solution.close();
     }
 
-    // Возможность установить размер поля, если нажать Enter в одном из двух текстовых полей размера
+    /**
+     * Возможность установить размер поля, если нажать Enter в одном из двух текстовых полей размера
+     */
     public void sizeChanged(KeyEvent keyEvent) {
         if (keyEvent.getCode() == KeyCode.ENTER) {
             setSizeButtonClicked();
         }
     }
 
-    // Обработчик нажатия кнопки установки заданного пользователем размера поля
+    /**
+     * Обработчик нажатия кнопки установки заданного пользователем размера поля
+     */
     public void setSizeButtonClicked() {
         if (isSizeCorrect()) {
             model.changeSize(Integer.parseInt(widthTextField.getText()), Integer.parseInt(heightTextField.getText()));
@@ -104,7 +114,9 @@ public class Controller {
         }
     }
 
-    // Обработчик нажатия кнопки случайного размера поля
+    /**
+     * Обработчик нажатия кнопки случайного размера поля
+     */
     public void randomSizeButtonClicked() {
         model.changeSize();
         widthTextField.setText(String.valueOf(model.getWidth()));
@@ -112,7 +124,9 @@ public class Controller {
         changeField();
     }
 
-    // Обработчик нажатия кнопки случайного содержимого поля
+    /**
+     * Обработчик нажатия кнопки случайного содержимого поля
+     */
     public void randomContentButtonClicked() {
         if (gridPane.getColumnCount() != 0 && gridPane.getRowCount() != 0) {
             model.setRandomValues();
@@ -122,7 +136,9 @@ public class Controller {
         }
     }
 
-    // Обработчик нажатия кнопки "Показать решения"
+    /**
+     * Обработчик нажатия кнопки "Показать решения"
+     */
     public void showButtonClicked() {
         model.solve();
         labels = new Label[model.getHeight()][model.getWidth()];
@@ -166,21 +182,27 @@ public class Controller {
         }
     }
 
-    // Обработчик нажатия кнопки показа следующего решения
+    /**
+     * Обработчик нажатия кнопки показа следующего решения
+     */
     public void nextButtonClicked() {
         solutionNumber = solutionNumber == model.getSolutionsSize() ? 1 : solutionNumber + 1;
         solutionsNumberLabel.setText(solutionNumber + " из " + model.getSolutionsSize());
         updateField();
     }
 
-    // Обработчик нажатия кнопки показа предыдущего решения
+    /**
+     * Обработчик нажатия кнопки показа предыдущего решения
+     */
     public void previousButtonClicked() {
         solutionNumber = solutionNumber == 1 ? model.getSolutionsSize() : solutionNumber - 1;
         solutionsNumberLabel.setText(solutionNumber + " из " + model.getSolutionsSize());
         updateField();
     }
 
-    // Изменяет отображамое поле в соответсвии с состоянием модели
+    /**
+     * Изменяет отображамое поле в соответсвии с состоянием модели
+     */
     private void changeField() {
         if (gridPane.getColumnCount() == 0 && gridPane.getRowCount() == 0) {
             for (int i = 0; i < maxSize; i++) {
@@ -214,7 +236,9 @@ public class Controller {
         }
     }
 
-    // Метод проверки корректности введеных размеров игрового поля
+    /**
+     * Метод проверки корректности введеных размеров игрового поля
+     */
     private boolean isSizeCorrect() {
         if (widthTextField.getText().isEmpty() || heightTextField.getText().isEmpty()) {
             showAlert("Сначала установите размеры поля");
@@ -234,7 +258,9 @@ public class Controller {
         return true;
     }
 
-    // Метод для ототбражения выбранного решения
+    /**
+     * Метод для ототбражения выбранного решения
+     */
     private void updateField() {
         for (int i = 0; i < model.getHeight(); i++) {
             for (int j = 0; j < model.getWidth(); j++) {
@@ -246,7 +272,9 @@ public class Controller {
         }
     }
 
-    // Создание всплывающего окна для информационных сообщений
+    /**
+     * Создание всплывающего окна для информационных сообщений
+     */
     private void showAlert(String text) {
         Alert alert = new Alert(Alert.AlertType.NONE, text, ButtonType.OK);
         alert.setTitle("Внимание");

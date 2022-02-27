@@ -14,6 +14,9 @@ public class Model {
     List<List<Pair<Integer, Integer>>> solutions = new ArrayList<>();
     private boolean isSolved = false;
 
+    /**
+     * Нахождение всех решений
+     */
     public void solve() {
         if (!isSolved) {
             List<Pair<Integer, Integer>> solution = new ArrayList<>();
@@ -23,6 +26,11 @@ public class Model {
         }
     }
 
+    /**
+     * Рекурсивный метод поиска всех решений
+     * i, j - начальная точка
+     * solution - текущий путь из начальной точки в текущую
+     */
     private void findSolution(int i, int j, List<Pair<Integer, Integer>> solution) {
         if (i == height - 1 && j == width - 1)  {
             solution.add(new Pair<>(i, j));
@@ -40,18 +48,27 @@ public class Model {
         }
     }
 
+    /**
+     * Изменение размеров поля на случайные
+     */
     public void changeSize() {
         width = (int) (random() * 7) + 2;
         height = (int) (random() * 7) + 2;
         updateField();
     }
 
+    /**
+     * Изменение размеров поля на заданные
+     */
     public void changeSize(int width, int height) {
         this.width = width;
         this.height = height;
         updateField();
     }
 
+    /**
+     * Изменение поля в соответсвии с заданными width и height
+     */
     private void updateField() {
         setNotSolved();
         int[][] newField = new int[height][width];
@@ -67,11 +84,17 @@ public class Model {
         field = newField;
     }
 
+    /**
+    * Изменения статуса поля на нерешенное
+    */
     private void setNotSolved() {
         isSolved = false;
         solutions.clear();
     }
 
+    /**
+     * Установка случайных значений в клетки поля
+     */
     public void setRandomValues() {
         setNotSolved();
         for (int i = 0; i < height; i++) {
@@ -81,31 +104,54 @@ public class Model {
         }
     }
 
+    /**
+    Способ установки случайных значений.
+    В данной реализации находится максимальная расстояние из клетки до нижней или правой границы
+    и получается случайное число от 0 до до этого значения
+    */
     private int getRandomValue(int i, int j) {
         return (int) (random() * (max(width - j, height - i)));
     }
 
+    /**
+     * Установка в заданной клетке заданного значения
+     */
     public void set(int i, int j, int value) {
         setNotSolved();
         field[i][j] = value;
     }
 
+    /**
+     * Геттер количества решений
+     */
     public int getSolutionsSize() {
         return solutions.size();
     }
 
+    /**
+     * Геттер списка решений
+     */
     public List<List<Pair<Integer, Integer>>> getSolutions() {
         return solutions;
     }
 
+    /**
+     * Геттер ширины поля
+     */
     public int getWidth() {
         return width;
     }
 
+    /**
+     * Геттер высоты поля
+     */
     public int getHeight() {
         return height;
     }
 
+    /**
+     * Геттер значения в клетке поля
+     */
     public int get(int i, int j) {
         return field[i][j];
     }
