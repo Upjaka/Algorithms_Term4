@@ -53,9 +53,7 @@ public class Model {
     }
 
     private void updateField() {
-        for (List<Pair<Integer, Integer>> solution : solutions) {
-            solutions.remove(solution);
-        }
+        setNotSolved();
         int[][] newField = new int[height][width];
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
@@ -69,10 +67,13 @@ public class Model {
         field = newField;
     }
 
+    private void setNotSolved() {
+        isSolved = false;
+        solutions.clear();
+    }
+
     public void setRandomValues() {
-        for (List<Pair<Integer, Integer>> solution : solutions) {
-            solutions.remove(solution);
-        }
+        setNotSolved();
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
                 field[i][j] = getRandomValue(i, j);
@@ -85,7 +86,8 @@ public class Model {
     }
 
     public void set(int i, int j, int value) {
-        if (i >= 0 && i < height && j >= 0 && j < width) field[i][j] = value;
+        setNotSolved();
+        field[i][j] = value;
     }
 
     public int getSolutionsSize() {

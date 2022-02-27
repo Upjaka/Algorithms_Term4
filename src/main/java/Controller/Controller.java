@@ -113,8 +113,40 @@ public class Controller {
     }
 
     public void showButtonClicked() {
-        showSolution();
+        model.solve();
+        labels = new Label[model.getHeight()][model.getWidth()];
+
+        for (int i = 0; i < model.getHeight(); i++) {
+            for (int j = 0; j < model.getWidth(); j++) {
+                Label label = new Label(textFields[i][j].getText());
+                label.getStyleClass().add("cell");
+                labels[i][j] = label;
+                solutionGrid.add(label, i, j);
+            }
+        }
+
+        while (solutionGrid.getColumnCount() < model.getWidth()) {
+            solutionGrid.getColumnConstraints().add(new ColumnConstraints());
+        }
+        while (solutionGrid.getRowCount() < model.getHeight()) {
+            solutionGrid.getRowConstraints().add(new RowConstraints());
+        }
+
+        solutionsNumberLabel.setText("1 из " + model.getSolutionsSize());
+        solutionNumber = 1;
+
+        controlButtons.getChildren().remove(showButton);
+
         if (model.getSolutionsSize() == 0) noSolutions();
+        else {
+            if (model.getSolutionsSize() != 1) {
+                previousButton.setVisible(true);
+                previousButton.getStyleClass().add("controlButton");
+                nextButton.setVisible(true);
+                nextButton.getStyleClass().add("controlButton");
+            }
+            updateField();
+        }
     }
 
     public void nextButtonClicked() {
@@ -139,7 +171,7 @@ public class Controller {
                 }
             }
         }
-        gridPane.getChildren().removeAll(gridPane.getChildren());
+        gridPane.getChildren().clear();
 
         int width = Integer.parseInt(widthTextField.getText());
         int height = Integer.parseInt(heightTextField.getText());
@@ -183,38 +215,6 @@ public class Controller {
             return false;
         }
         return true;
-    }
-
-    private void showSolution() {
-        model.solve();
-        labels = new Label[model.getHeight()][model.getWidth()];
-
-        for (int i = 0; i < model.getHeight(); i++) {
-            for (int j = 0; j < model.getWidth(); j++) {
-                Label label = new Label(textFields[i][j].getText());
-                label.getStyleClass().add("cell");
-                labels[i][j] = label;
-                solutionGrid.add(label, i, j);
-            }
-        }
-
-        while (solutionGrid.getColumnCount() < model.getWidth()) {
-            solutionGrid.getColumnConstraints().add(new ColumnConstraints());
-        }
-        while (solutionGrid.getRowCount() < model.getHeight()) {
-            solutionGrid.getRowConstraints().add(new RowConstraints());
-        }
-
-        solutionsNumberLabel.setText("1 из " + model.getSolutionsSize());
-        solutionNumber = 1;
-
-        previousButton.setVisible(true);
-        previousButton.getStyleClass().add("controlButton");
-        nextButton.setVisible(true);
-        nextButton.getStyleClass().add("controlButton");
-        controlButtons.getChildren().remove(showButton);
-
-        updateField();
     }
 
     private void noSolutions() {
