@@ -1,0 +1,114 @@
+.borderPane {
+    -fx-background-image: url('background.png');
+}
+.vbox {
+    -fx-padding: 20 20 20 20;
+    -fx-border-radius: 10;
+    -fx-border-color: LightGray;
+    -fx-border-width: 3px;
+}
+.textField {
+    -fx-background-radius: 5;
+    -fx-pref-width: 40px;
+    -fx-pref-height: 40px;
+    -fx-alignment: center;
+    -fx-font-size: 16px;
+    -fx-background-radius: 3;
+    -fx-font-family: "Arial Black";
+}
+.textLabel {
+    -fx-font-size: 15px;
+    -fx-font-family: "Arial Black";
+    -fx-text-fill: DimGrey;
+}
+.sizeField {
+    -fx-font-size: 15;
+    -fx-pref-width: 35px;
+    -fx-pref-height: 35px;
+    -fx-alignment: center;
+}
+.randomButton {
+    -fx-background-color: white;
+    -fx-border-color: gray;
+    -fx-border-radius: 45px;
+    -fx-pref-width: 125px;
+    -fx-pref-height: 31px;
+    -fx-font-size: 18px;
+    -fx-font-family: 'Montserrat', sans-serif;
+    -fx-font-weight: 600;
+    -fx-text-fill: #524f4e;
+}
+.randomButton:hover {
+    -fx-background-radius: 45px;
+    -fx-background-color: #6495ED;
+    -fx-border-color: #6495ED;
+    -fx-text-fill: white;
+}
+.startButton {
+    -fx-background-color: white;
+    -fx-pref-width: 140px;
+    -fx-pref-height: 40px;
+    -fx-font-size: 18px;
+    -fx-font-family: 'Montserrat', sans-serif;
+    -fx-border-color: gray;
+    -fx-border-radius: 45px;
+}
+.startButton:hover {
+    -fx-background-color: #2EE59D;
+    -fx-background-radius: 45px;
+    -fx-border-color: #2EE59D;
+    -fx-text-fill: white;
+    -fx-translate-y: -3px;
+}
+.exitButton {
+    -fx-background-color: white;
+    -fx-pref-width: 120px;
+    -fx-pref-height: 31px;
+    -fx-font-size: 18px;
+    -fx-font-family: 'Montserrat', sans-serif;
+    -fx-border-color: gray;
+    -fx-border-radius: 45px;
+}
+.exitButton:hover {
+    -fx-background-color: #ff3000;
+    -fx-background-radius: 45px;
+    -fx-border-color: #ff3000;
+    -fx-text-fill: white;
+    -fx-translate-y: -3px;
+}
+.controlButton {
+    -fx-background-color: white;
+    -fx-border-color: gray;
+    -fx-border-radius: 45px;
+    -fx-pref-width: 150px;
+    -fx-pref-height: 31px;
+    -fx-font-size: 18px;
+    -fx-font-family: 'Montserrat', sans-serif;
+    -fx-font-weight: 600;
+    -fx-text-fill: #524f4e;
+}
+.controlButton:hover {
+    -fx-background-radius: 45px;
+    -fx-background-color: #6495ED;
+    -fx-border-color: #6495ED;
+    -fx-text-fill: white;
+}
+.cell {
+    -fx-background-color: white;
+    -fx-border-color: silver;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-min-width: 40px;
+    -fx-min-height: 40px;
+    -fx-alignment: center;
+    -fx-font-size: 16px;
+    -fx-background-radius: 3;
+    -fx-font-family: "Arial Black";
+}
+.borderCell {
+    -fx-background-color: orange;
+    -fx-background-radius: 5;
+}
+.solutionCell {
+    -fx-background-color: yellow;
+}

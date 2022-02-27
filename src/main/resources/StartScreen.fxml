@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox stylesheets="@styles.css"
+      xmlns="http://javafx.com/javafx/11.0.1"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="Controller.Controller">
+   <BorderPane prefHeight="800.0" styleClass="borderPane">
+      <center>
+         <VBox alignment="TOP_CENTER" BorderPane.alignment="TOP_CENTER">
+            <BorderPane.margin>
+               <Insets bottom="200.0" top="30.0" />
+            </BorderPane.margin>
+            <GridPane fx:id="gridPane" alignment="CENTER">
+            </GridPane>
+            <HBox alignment="TOP_CENTER">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+               <VBox alignment="TOP_CENTER" spacing="10.0" styleClass="vbox">
+                  <HBox.margin>
+                     <Insets right="30.0" />
+                  </HBox.margin>
+                  <Label styleClass="textLabel" text="Размер поля" />
+                  <HBox alignment="TOP_CENTER" spacing="5.0">
+                     <TextField fx:id="widthTextField" onKeyReleased="#sizeChanged" styleClass="sizeField" />
+                     <Label prefHeight="26.0" prefWidth="6.0" style="-fx-font-size: 15;" text="x" />
+                     <TextField fx:id="heightTextField" onKeyReleased="#sizeChanged" styleClass="sizeField" />
+                  </HBox>
+                  <Button onAction="#randomSizeButtonClicked" styleClass="randomButton" text="Случайный" />
+               </VBox>
+               <VBox alignment="CENTER" spacing="10.0" styleClass="vbox">
+                  <Label styleClass="textLabel" text="Заполнение поля" />
+                  <Button onAction="#randomContentButtonClicked" styleClass="randomButton" text="Случайное" />
+               </VBox>
+            </HBox>
+            <Button onAction="#startButtonClicked" styleClass="startButton" text="Решить">
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </Button>
+            <Button onAction="#exitButtonClicked" styleClass="exitButton" text="Выход">
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </Button>
+         </VBox>
+      </center>
+   </BorderPane>
+</VBox>
