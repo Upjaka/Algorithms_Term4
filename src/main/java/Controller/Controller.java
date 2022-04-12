@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.ColumnConstraints;
@@ -66,7 +67,7 @@ public class Controller {
                 for (TextField textField : textFields1) {
                     Matcher matcher = pattern.matcher(textField.getText());
                     if (matcher.find()) {
-                        showAlert("Можно вводить только числа");
+                        showAlert("Можно вводить только неотрицательные числа");
                         return;
                     }
                 }
@@ -83,6 +84,7 @@ public class Controller {
             solutionWindow.setScene(solutionScene);
             solutionWindow.initOwner(Main.getPrimary());
             solutionWindow.initModality(Modality.WINDOW_MODAL);
+            solutionWindow.getIcons().add(new Image("game_controller_icon.png"));
             solution = solutionWindow;
             solutionWindow.show();
         }
@@ -168,8 +170,7 @@ public class Controller {
             solutionsNumberLabel.setText("Нет решений");
             nextButton.setVisible(false);
             previousButton.setVisible(false);
-        }
-        else {
+        } else {
             if (model.getSolutionsSize() != 1) {
                 previousButton.setVisible(true);
                 previousButton.getStyleClass().add("controlButton");

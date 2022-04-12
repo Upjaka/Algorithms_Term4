@@ -31,8 +31,8 @@ public class Model {
      * i, j - начальная точка
      * solution - текущий путь из начальной точки в текущую
      */
-    private void findSolution(int i, int j, List<Pair<Integer, Integer>> solution) {
-        if (i == height - 1 && j == width - 1)  {
+    private void findSolution(final int i, final int j, List<Pair<Integer, Integer>> solution) {
+        if (i == height - 1 && j == width - 1) {
             solution.add(new Pair<>(i, j));
             solutions.add(solution);
         }
@@ -60,7 +60,7 @@ public class Model {
     /**
      * Изменение размеров поля на заданные
      */
-    public void changeSize(int width, int height) {
+    public void changeSize(final int width, final int height) {
         this.width = width;
         this.height = height;
         updateField();
@@ -74,7 +74,7 @@ public class Model {
         int[][] newField = new int[height][width];
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
-                if (i < field.length && j < field[i].length)  {
+                if (i < field.length && j < field[i].length) {
                     newField[i][j] = field[i][j];
                 } else {
                     newField[i][j] = getRandomValue(i, j);
@@ -85,8 +85,8 @@ public class Model {
     }
 
     /**
-    * Изменения статуса поля на нерешенное
-    */
+     * Изменения статуса поля на нерешенное
+     */
     private void setNotSolved() {
         isSolved = false;
         solutions.clear();
@@ -105,18 +105,18 @@ public class Model {
     }
 
     /**
-    Способ установки случайных значений.
-    В данной реализации находится максимальная расстояние из клетки до нижней или правой границы
-    и получается случайное число от 0 до до этого значения
-    */
-    private int getRandomValue(int i, int j) {
+     * Способ установки случайных значений.
+     * В данной реализации находится максимальная расстояние из клетки до нижней или правой границы
+     * и получается случайное число от 0 до до этого значения
+     */
+    private int getRandomValue(final int i, final int j) {
         return (int) (random() * (max(width - j, height - i)));
     }
 
     /**
      * Установка в заданной клетке заданного значения
      */
-    public void set(int i, int j, int value) {
+    public void set(final int i, final int j, final int value) {
         setNotSolved();
         field[i][j] = value;
     }
@@ -152,7 +152,7 @@ public class Model {
     /**
      * Геттер значения в клетке поля
      */
-    public int get(int i, int j) {
+    public int get(final int i, final int j) {
         return field[i][j];
     }
 }
