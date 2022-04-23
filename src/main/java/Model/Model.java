@@ -29,7 +29,7 @@ public class Model {
     /**
      * Рекурсивный метод поиска всех решений
      * i, j - начальная точка
-     * solution - текущий путь из начальной точки в текущую
+     * solution - путь из первой ячейки в текущую точку поля
      */
     private void findSolution(final int i, final int j, List<Pair<Integer, Integer>> solution) {
         if (i == height - 1 && j == width - 1) {
@@ -107,7 +107,7 @@ public class Model {
     /**
      * Способ установки случайных значений.
      * В данной реализации находится максимальная расстояние из клетки до нижней или правой границы
-     * и получается случайное число от 0 до до этого значения
+     * и генерируется случайное число от 0 до этого значения
      */
     private int getRandomValue(final int i, final int j) {
         return (int) (random() * (max(width - j, height - i)));
